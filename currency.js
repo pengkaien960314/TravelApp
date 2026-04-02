@@ -21,6 +21,22 @@ window.selectCurrencyOption = function(dropdownId, text) {
   }
 };
 
+// ==================== 貨幣上下對調功能 ====================
+window.swapCurrencyValues = function() {
+  const fromSpan = document.getElementById("fromCurrencySelected");
+  const toSpan = document.getElementById("toCurrencySelected");
+  
+  // 交換文字
+  const tempText = fromSpan.textContent;
+  fromSpan.textContent = toSpan.textContent;
+  toSpan.textContent = tempText;
+  
+  // 加上一點震動回饋 (如果 iPhone 支援)
+  if (navigator.vibrate) {
+    navigator.vibrate(50);
+  }
+};
+
 // ==================== 萃取幣別代碼 ====================
 function extractCurrencyCode(text) {
   const match = text.match(/[A-Z]{3}/);
