@@ -47,7 +47,7 @@
             </svg>
           </div>
           <div class="btn-content">
-            <span class="btn-title">AI 萬國翻譯</span>
+            <span class="btn-title">AI 翻譯助手</span>
             <span class="btn-subtitle">文字、對話、圖片即時解碼</span>
           </div>
           <span class="btn-arrow">→</span>
@@ -227,27 +227,26 @@
       <h1 class="text-xl font-medium">💱 即時匯率換算</h1>
     </div>
 
-    <div class="flex-1 p-6 space-y-8">
+        <div class="flex-1 p-5 space-y-6">
 
-      <!-- 金額輸入 -->
-      <div>
-        <label class="block text-sm font-medium text-gray-500 mb-2 tracking-widest">金額</label>
+      <div class="bg-white/90 backdrop-blur-xl border border-white rounded-[32px] p-8 text-center shadow-[0_8px_30px_rgb(0,0,0,0.06)] relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gold-400 to-transparent opacity-50"></div>
+        <label class="block text-[11px] font-bold text-gray-400 tracking-[0.2em] uppercase mb-3">Amount to Convert</label>
         <input id="amount" type="number" value="1000" 
-               class="w-full text-5xl font-light p-6 bg-white border border-gray-200 rounded-3xl focus:outline-none focus:border-gold-400 text-navy-900">
+               class="w-full text-6xl font-light bg-transparent text-navy-900 text-center focus:outline-none placeholder-gray-200" style="caret-color: #f59e0b;">
       </div>
 
-      <!-- 幣別選擇區塊 -->
-      <div class="flex flex-col space-y-2 relative z-50">
+      <div class="relative bg-white/80 backdrop-blur-xl border border-white rounded-[32px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-4">
         
-        <div class="relative w-full">
-          <label class="block text-sm font-medium text-gray-500 mb-2 tracking-widest pl-2">從</label>
+        <div class="relative w-full mb-3">
+          <label class="block text-[11px] font-bold text-gray-400 mb-2 tracking-widest pl-3 uppercase">From</label>
           <div id="fromCurrencyDropdown" class="custom-dropdown relative w-full" onclick="toggleDropdown('fromCurrencyDropdown')">
-            <div class="p-5 bg-white/80 backdrop-blur-md border border-gray-200 rounded-[24px] text-lg font-semibold text-navy-900 cursor-pointer hover:border-gold-400 transition-all flex justify-between items-center shadow-sm">
+            <div class="p-4 bg-gray-50/80 hover:bg-gray-100 rounded-[20px] text-lg font-semibold text-navy-900 cursor-pointer transition-all flex justify-between items-center">
               <span id="fromCurrencySelected" class="truncate block w-full text-left">🇺🇸 USD 美金</span>
               <svg class="w-5 h-5 text-gray-400 flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
             </div>
             
-                        <ul class="dropdown-options absolute z-50 mt-2 w-full bg-white/95 backdrop-blur-2xl border border-gray-100 rounded-[20px] shadow-2xl overflow-y-auto max-h-[320px] overscroll-contain" style="left: 0;">
+            <ul class="dropdown-options absolute z-50 mt-2 w-full bg-white/95 backdrop-blur-2xl border border-gray-100 rounded-[20px] shadow-2xl overflow-y-auto max-h-[320px] overscroll-contain" style="left: 0;">
               <li class="dropdown-option whitespace-nowrap px-5 py-4 border-b border-gray-50" onclick="event.stopPropagation(); selectCurrencyOption('fromCurrencyDropdown', '🇹🇼 TWD 新台幣')">🇹🇼 TWD 新台幣</li>
               <li class="dropdown-option whitespace-nowrap px-5 py-4 border-b border-gray-50" onclick="event.stopPropagation(); selectCurrencyOption('fromCurrencyDropdown', '🇺🇸 USD 美金')">🇺🇸 USD 美金</li>
               <li class="dropdown-option whitespace-nowrap px-5 py-4 border-b border-gray-50" onclick="event.stopPropagation(); selectCurrencyOption('fromCurrencyDropdown', '🇯🇵 JPY 日幣')">🇯🇵 JPY 日幣</li>
@@ -278,21 +277,21 @@
           </div>
         </div>
 
-        <div class="flex justify-center -my-2 relative z-10 pointer-events-none">
-          <button onclick="swapCurrencyValues()" class="p-3 bg-gray-50 rounded-full border border-gray-200 pointer-events-auto hover:bg-gold-400 hover:text-white text-gray-400 transition-all active:scale-90 shadow-sm flex-shrink-0 z-10">
+        <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+          <button onclick="swapCurrencyValues()" class="w-12 h-12 bg-navy-900 text-white rounded-full flex items-center justify-center shadow-[0_4px_15px_rgba(15,23,42,0.3)] hover:bg-gold-500 hover:scale-105 active:scale-90 transition-all border-[4px] border-white ring-1 ring-gray-100/50">
             <svg class="w-5 h-5 transform rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
           </button>
         </div>
 
-        <div class="relative w-full">
-          <label class="block text-sm font-medium text-gray-500 mb-2 tracking-widest pl-2">換成</label>
+        <div class="relative w-full mt-3">
+          <label class="block text-[11px] font-bold text-gray-400 mb-2 tracking-widest pl-3 uppercase">To</label>
           <div id="toCurrencyDropdown" class="custom-dropdown relative w-full" onclick="toggleDropdown('toCurrencyDropdown')">
-            <div class="p-5 bg-white/80 backdrop-blur-md border border-gray-200 rounded-[24px] text-lg font-semibold text-gold-500 cursor-pointer hover:border-gold-400 transition-all flex justify-between items-center shadow-sm">
+            <div class="p-4 bg-gray-50/80 hover:bg-gray-100 rounded-[20px] text-lg font-semibold text-gold-500 cursor-pointer transition-all flex justify-between items-center">
               <span id="toCurrencySelected" class="truncate block w-full text-left">🇹🇼 TWD 新台幣</span>
               <svg class="w-5 h-5 text-gray-400 flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
             </div>
             
-                        <ul class="dropdown-options absolute z-50 mt-2 w-full bg-white/95 backdrop-blur-2xl border border-gray-100 rounded-[20px] shadow-2xl overflow-y-auto max-h-[320px] overscroll-contain" style="left: 0;">
+            <ul class="dropdown-options absolute z-50 mt-2 w-full bg-white/95 backdrop-blur-2xl border border-gray-100 rounded-[20px] shadow-2xl overflow-y-auto max-h-[320px] overscroll-contain" style="left: 0;">
               <li class="dropdown-option whitespace-nowrap px-5 py-4 border-b border-gray-50" onclick="event.stopPropagation(); selectCurrencyOption('toCurrencyDropdown', '🇹🇼 TWD 新台幣')">🇹🇼 TWD 新台幣</li>
               <li class="dropdown-option whitespace-nowrap px-5 py-4 border-b border-gray-50" onclick="event.stopPropagation(); selectCurrencyOption('toCurrencyDropdown', '🇺🇸 USD 美金')">🇺🇸 USD 美金</li>
               <li class="dropdown-option whitespace-nowrap px-5 py-4 border-b border-gray-50" onclick="event.stopPropagation(); selectCurrencyOption('toCurrencyDropdown', '🇯🇵 JPY 日幣')">🇯🇵 JPY 日幣</li>
@@ -322,22 +321,26 @@
             </ul>
           </div>
         </div>
+
       </div>
-      <!-- 立即換算按鈕 -->
+
       <button onclick="convertCurrency()" 
-              class="w-full bg-navy-900 hover:bg-black text-white font-semibold py-5 rounded-3xl text-xl shadow-premium flex items-center justify-center gap-3 transition-all active:scale-95">
+              class="w-full bg-navy-900 hover:bg-black text-white font-bold tracking-widest py-5 rounded-[28px] text-lg shadow-premium flex items-center justify-center gap-3 transition-all active:scale-95">
         <span>立即換算</span>
       </button>
 
-      <!-- 結果顯示區 -->
-      <div id="currencyResult" class="hidden bg-emerald-50 border border-emerald-200 rounded-3xl p-6 text-center">
-        <p class="text-emerald-700 text-sm font-medium tracking-widest mb-1">即時換算結果</p>
-        <div id="resultAmount" class="text-5xl font-light text-navy-900 my-3"></div>
-        <div id="resultRate" class="text-sm text-emerald-600"></div>
+      <div id="currencyResult" class="hidden relative overflow-hidden bg-navy-900 rounded-[32px] p-8 text-center shadow-2xl mt-4">
+        <div class="absolute -top-12 -right-12 w-32 h-32 bg-gold-500 rounded-full blur-[40px] opacity-20 pointer-events-none"></div>
+        <div class="absolute -bottom-12 -left-12 w-32 h-32 bg-blue-400 rounded-full blur-[40px] opacity-20 pointer-events-none"></div>
+        
+        <div class="relative z-10">
+          <p class="text-gold-400 text-[11px] font-bold tracking-[0.2em] mb-2 uppercase">Live Exchange Rate</p>
+          <div id="resultAmount" class="text-4xl font-light text-white my-3 tracking-wide"></div>
+          <div id="resultRate" class="text-xs text-gray-400 font-medium"></div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
+
   <!-- ==================== JS引入 ==================== -->
   <script src="config.js"></script>
   <script src="router.js"></script>
