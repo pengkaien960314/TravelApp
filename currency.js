@@ -1,6 +1,6 @@
 // ==================== currency.js ====================
 // 即時匯率換算模組
-
+// 
 const DEV_MODE = window.config ? window.config.app.devMode : false;
 const EXCHANGE_API_URL = "https://open.er-api.com/v6/latest/";
 
