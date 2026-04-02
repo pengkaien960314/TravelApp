@@ -7,7 +7,7 @@ const config = {
   app: {
     name: "TravelApp AI",
     version: "2.0.0",      // 升級為 2.0 高級版
-    devMode: false,         // true = 啟用模擬資料 (免燒 API 額度)，false = 真實呼叫
+    devMode: true,         // true = 啟用模擬資料 (免燒 API 額度)，false = 真實呼叫
     debugLog: true         // 是否在 Console 印出除錯訊息
   },
 
