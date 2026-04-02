@@ -1,9 +1,9 @@
 // ==================== currency.js ====================
 // 即時匯率換算模組
 
-// 更安全的 DEV_MODE 讀取方式，防止 config.js 沒載入時當機
-const DEV_MODE = (typeof window !== 'undefined' && window.config && window.config.app) ? window.config.app.devMode : false;
-const EXCHANGE_API_URL = "https://open.er-api.com/v6/latest/";
+// 【修復重點】：將變數加上 CURRENCY_ 前綴，防止與 translation.js 發生變數名稱衝突導致當機
+const CURRENCY_DEV_MODE = (typeof window !== 'undefined' && window.config && window.config.app) ? window.config.app.devMode : false;
+const CURRENCY_API_URL = "https://open.er-api.com/v6/latest/";
 
 // ==================== 專屬下拉選單控制邏輯 ====================
 window.selectCurrencyOption = function(dropdownId, text) {
@@ -23,7 +23,6 @@ window.selectCurrencyOption = function(dropdownId, text) {
 
 // ==================== 萃取幣別代碼 ====================
 function extractCurrencyCode(text) {
-  // 使用正規表達式抓取連續三個大寫英文字母，若無則預設為 USD
   const match = text.match(/[A-Z]{3}/);
   return match ? match[0] : "USD";
 }
@@ -33,11 +32,9 @@ window.convertCurrency = async function() {
   const amountInput = document.getElementById("amount");
   const amount = parseFloat(amountInput.value);
   
-  // 讀取 UI 上選單裡的完整文字
   const fromText = document.getElementById("fromCurrencySelected").textContent;
   const toText = document.getElementById("toCurrencySelected").textContent;
 
-  // 萃取出純粹的英文代碼給 API 用
   const fromCurrency = extractCurrencyCode(fromText);
   const toCurrency = extractCurrencyCode(toText);
 
@@ -55,7 +52,7 @@ window.convertCurrency = async function() {
   resultAmount.innerHTML = `<span class="text-xl text-gray-500 font-medium">🔄 獲取最新匯率中...</span>`;
   resultRate.textContent = "請稍候...";
 
-  if (DEV_MODE) {
+  if (CURRENCY_DEV_MODE) {
     setTimeout(() => {
       console.log(`🔧 開發模式 - 模擬 ${fromCurrency} → ${toCurrency}`);
       const mockRates = {
@@ -79,7 +76,7 @@ window.convertCurrency = async function() {
   }
 
   try {
-    const response = await fetch(`${EXCHANGE_API_URL}${fromCurrency}`);
+    const response = await fetch(`${CURRENCY_API_URL}${fromCurrency}`);
     const data = await response.json();
 
     if (data.result !== "success") {
