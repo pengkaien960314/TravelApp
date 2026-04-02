@@ -111,7 +111,7 @@
         
         <div class="flex items-center justify-between bg-white p-2 rounded-2xl shadow-sm border border-gray-100 relative z-50">
           
-          <div id="sourceDropdown" class="custom-dropdown relative w-[42%]" onclick="toggleDropdown('sourceDropdown')">
+                    <div id="sourceDropdown" class="custom-dropdown relative w-[42%]" onclick="toggleDropdown('sourceDropdown')">
             <div class="px-2 py-3 rounded-xl font-semibold text-navy-900 cursor-pointer hover:bg-gray-50 transition-colors flex justify-center items-center gap-1">
               <span id="sourceSelected" class="truncate text-base">🌐 自動偵測</span>
               <svg class="w-4 h-4 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
@@ -119,38 +119,39 @@
     
             <ul class="dropdown-options" style="width: 220px; left: 0;">
               <li class="dropdown-option" onclick="selectOption('sourceDropdown', '🌐 自動偵測')">🌐 自動偵測</li>
-              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇹🇼 中文')">🇹🇼 中文</li>
-              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇺🇸 英文')">🇺🇸 英文</li>
-              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇯🇵 日文')">🇯🇵 日文</li>
-              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇰🇷 韓文')">🇰🇷 韓文</li>
-              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇹🇭 泰文')">🇹🇭 泰文</li>
-              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇻🇳 越南文')">🇻🇳 越南文</li>
-              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇵🇭 菲律賓文')">🇵🇭 菲律賓文</li>
-              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇲🇾 馬來文')">🇲🇾 馬來文</li>
-              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇮🇩 印尼文')">🇮🇩 印尼文</li>
-              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇫🇷 法文')">🇫🇷 法文</li>
-              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇩🇪 德文')">🇩🇪 德文</li>
-              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇪🇸 西班牙文')">🇪🇸 西班牙文</li>
-              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇮🇹 義大利文')">🇮🇹 義大利文</li>
-              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇳🇱 荷蘭文')">🇳🇱 荷蘭文</li>
-              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇨🇿 捷克文')">🇨🇿 捷克文</li>
-              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇨🇭 瑞士德文')">🇨🇭 瑞士德文</li>
-              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇬🇷 希臘文')">🇬🇷 希臘文</li>
-              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇮🇸 冰島文')">🇮🇸 冰島文</li>
-              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇵🇹 葡萄牙文')">🇵🇹 葡萄牙文</li>
-              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇹🇷 土耳其文')">🇹🇷 土耳其文</li>
-              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇦🇪 阿拉伯文')">🇦🇪 阿拉伯文</li>
-              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇷🇺 俄文')">🇷🇺 俄文</li>
-              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇸🇪 瑞典文')">🇸🇪 瑞典文</li>
-              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇩🇰 丹麥文')">🇩🇰 丹麥文</li>
-              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇫🇮 芬蘭文')">🇫🇮 芬蘭文</li>
-              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇳🇴 挪威文')">🇳🇴 挪威文</li>
-              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇵🇱 波蘭文')">🇵🇱 波蘭文</li>
-              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇭🇺 匈牙利文')">🇭🇺 匈牙利文</li>
-              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇰🇭 高棉文')">🇰🇭 高棉文</li>
-              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇮🇳 印地文')">🇮🇳 印地文</li>
+              <li class="dropdown-option" onclick="selectOption('sourceDropdown', '🇹🇼 中文')">🇹🇼 中文</li>
+              <li class="dropdown-option" onclick="selectOption('sourceDropdown', '🇺🇸 英文')">🇺🇸 英文</li>
+              <li class="dropdown-option" onclick="selectOption('sourceDropdown', '🇯🇵 日文')">🇯🇵 日文</li>
+              <li class="dropdown-option" onclick="selectOption('sourceDropdown', '🇰🇷 韓文')">🇰🇷 韓文</li>
+              <li class="dropdown-option" onclick="selectOption('sourceDropdown', '🇹🇭 泰文')">🇹🇭 泰文</li>
+              <li class="dropdown-option" onclick="selectOption('sourceDropdown', '🇻🇳 越南文')">🇻🇳 越南文</li>
+              <li class="dropdown-option" onclick="selectOption('sourceDropdown', '🇵🇭 菲律賓文')">🇵🇭 菲律賓文</li>
+              <li class="dropdown-option" onclick="selectOption('sourceDropdown', '🇲🇾 馬來文')">🇲🇾 馬來文</li>
+              <li class="dropdown-option" onclick="selectOption('sourceDropdown', '🇮🇩 印尼文')">🇮🇩 印尼文</li>
+              <li class="dropdown-option" onclick="selectOption('sourceDropdown', '🇫🇷 法文')">🇫🇷 法文</li>
+              <li class="dropdown-option" onclick="selectOption('sourceDropdown', '🇩🇪 德文')">🇩🇪 德文</li>
+              <li class="dropdown-option" onclick="selectOption('sourceDropdown', '🇪🇸 西班牙文')">🇪🇸 西班牙文</li>
+              <li class="dropdown-option" onclick="selectOption('sourceDropdown', '🇮🇹 義大利文')">🇮🇹 義大利文</li>
+              <li class="dropdown-option" onclick="selectOption('sourceDropdown', '🇳🇱 荷蘭文')">🇳🇱 荷蘭文</li>
+              <li class="dropdown-option" onclick="selectOption('sourceDropdown', '🇨🇿 捷克文')">🇨🇿 捷克文</li>
+              <li class="dropdown-option" onclick="selectOption('sourceDropdown', '🇨🇭 瑞士德文')">🇨🇭 瑞士德文</li>
+              <li class="dropdown-option" onclick="selectOption('sourceDropdown', '🇬🇷 希臘文')">🇬🇷 希臘文</li>
+              <li class="dropdown-option" onclick="selectOption('sourceDropdown', '🇮🇸 冰島文')">🇮🇸 冰島文</li>
+              <li class="dropdown-option" onclick="selectOption('sourceDropdown', '🇵🇹 葡萄牙文')">🇵🇹 葡萄牙文</li>
+              <li class="dropdown-option" onclick="selectOption('sourceDropdown', '🇹🇷 土耳其文')">🇹🇷 土耳其文</li>
+              <li class="dropdown-option" onclick="selectOption('sourceDropdown', '🇦🇪 阿拉伯文')">🇦🇪 阿拉伯文</li>
+              <li class="dropdown-option" onclick="selectOption('sourceDropdown', '🇷🇺 俄文')">🇷🇺 俄文</li>
+              <li class="dropdown-option" onclick="selectOption('sourceDropdown', '🇸🇪 瑞典文')">🇸🇪 瑞典文</li>
+              <li class="dropdown-option" onclick="selectOption('sourceDropdown', '🇩🇰 丹麥文')">🇩🇰 丹麥文</li>
+              <li class="dropdown-option" onclick="selectOption('sourceDropdown', '🇫🇮 芬蘭文')">🇫🇮 芬蘭文</li>
+              <li class="dropdown-option" onclick="selectOption('sourceDropdown', '🇳🇴 挪威文')">🇳🇴 挪威文</li>
+              <li class="dropdown-option" onclick="selectOption('sourceDropdown', '🇵🇱 波蘭文')">🇵🇱 波蘭文</li>
+              <li class="dropdown-option" onclick="selectOption('sourceDropdown', '🇭🇺 匈牙利文')">🇭🇺 匈牙利文</li>
+              <li class="dropdown-option" onclick="selectOption('sourceDropdown', '🇰🇭 高棉文')">🇰🇭 高棉文</li>
+              <li class="dropdown-option" onclick="selectOption('sourceDropdown', '🇮🇳 印地文')">🇮🇳 印地文</li>
             </ul>
           </div>
+
 
           <button onclick="swapLanguages()" class="p-3 bg-gray-50 rounded-full hover:bg-gold-400 hover:text-white text-gray-400 transition-all active:scale-90 shadow-sm flex-shrink-0 z-10">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
