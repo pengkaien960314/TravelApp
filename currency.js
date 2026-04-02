@@ -1,7 +1,8 @@
 // ==================== currency.js ====================
 // 即時匯率換算模組
-// 
-const DEV_MODE = window.config ? window.config.app.devMode : false;
+
+// 更安全的 DEV_MODE 讀取方式，防止 config.js 沒載入時當機
+const DEV_MODE = (typeof window !== 'undefined' && window.config && window.config.app) ? window.config.app.devMode : false;
 const EXCHANGE_API_URL = "https://open.er-api.com/v6/latest/";
 
 // ==================== 專屬下拉選單控制邏輯 ====================
@@ -20,16 +21,17 @@ window.selectCurrencyOption = function(dropdownId, text) {
   }
 };
 
-// ==================== 萃取幣別代碼 (例如: "🇺🇸 USD 美元" -> "USD") ====================
+// ==================== 萃取幣別代碼 ====================
 function extractCurrencyCode(text) {
-  // 使用正規表達式抓取連續三個大寫英文字母
+  // 使用正規表達式抓取連續三個大寫英文字母，若無則預設為 USD
   const match = text.match(/[A-Z]{3}/);
-  return match ? match[0] : "USD"; // 預設防呆回傳 USD
+  return match ? match[0] : "USD";
 }
 
-// ==================== 主要換算函式 ====================
-async function convertCurrency() {
-  const amount = parseFloat(document.getElementById("amount").value);
+// ==================== 主要換算函式 (強制綁定到 window) ====================
+window.convertCurrency = async function() {
+  const amountInput = document.getElementById("amount");
+  const amount = parseFloat(amountInput.value);
   
   // 讀取 UI 上選單裡的完整文字
   const fromText = document.getElementById("fromCurrencySelected").textContent;
@@ -43,14 +45,15 @@ async function convertCurrency() {
   const resultAmount = document.getElementById("resultAmount");
   const resultRate = document.getElementById("resultRate");
 
-  if (!amount || amount <= 0) {
+  if (!amount || amount <= 0 || isNaN(amount)) {
     alert("請輸入有效的金額！");
+    amountInput.focus();
     return;
   }
 
   resultDiv.classList.remove("hidden");
-  resultAmount.innerHTML = `<span class="text-2xl text-gray-400 font-medium">🔄 獲取最新匯率中...</span>`;
-  resultRate.textContent = "請稍候";
+  resultAmount.innerHTML = `<span class="text-xl text-gray-500 font-medium">🔄 獲取最新匯率中...</span>`;
+  resultRate.textContent = "請稍候...";
 
   if (DEV_MODE) {
     setTimeout(() => {
@@ -87,7 +90,7 @@ async function convertCurrency() {
 
     const rate = data.rates[toCurrency];
     if (!rate) {
-      resultAmount.innerHTML = `<span class="text-xl text-red-500">❌ 不支援此幣別轉換</span>`;
+      resultAmount.innerHTML = `<span class="text-xl text-red-500">❌ 不支援此幣別</span>`;
       resultRate.textContent = "請選擇其他幣別";
       return;
     }
@@ -96,14 +99,14 @@ async function convertCurrency() {
     const lastUpdateDate = new Date(data.time_last_update_unix * 1000).toLocaleDateString('zh-TW');
 
     resultAmount.textContent = `${converted} ${toCurrency}`;
-    resultRate.textContent = `1 ${fromCurrency} = ${rate.toFixed(4)} ${toCurrency}（真實匯率更新於 ${lastUpdateDate}）`;
+    resultRate.textContent = `1 ${fromCurrency} = ${rate.toFixed(4)} ${toCurrency}（更新於 ${lastUpdateDate}）`;
 
   } catch (e) {
     console.error("API 請求失敗:", e);
     resultAmount.innerHTML = `<span class="text-xl text-red-500">❌ 網路錯誤</span>`;
     resultRate.textContent = "請檢查您的網路連線";
   }
-}
+};
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log("✅ 真實匯率模組載入成功");
