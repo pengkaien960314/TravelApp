@@ -1,0 +1,290 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TravelApp - AI 多功能助手</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: {
+              900: '#0f172a', /* 深海藍 */
+            },
+            gold: {
+              400: '#fbbf24', /* 淺香檳金 */
+              500: '#f59e0b', /* 深香檳金 */
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-gray-100 min-h-screen">
+  
+  <div id="homePage" class="page active">
+    <div class="max-w-md mx-auto bg-gray-50 min-h-screen shadow-2xl overflow-y-auto">
+      
+      <div class="p-10 pt-16 pb-12">
+        <div class="w-16 h-1 bg-gold-400 rounded-full mb-4"></div>
+        <h1 class="text-5xl font-light text-navy-900 tracking-tight">Travel<span class="font-semibold text-gold-500">App</span></h1>
+        <p class="text-gray-500 mt-4 text-lg font-light leading-relaxed">你的 AI 旅行智能隨侍，<br>流暢溝通，愜意規劃。</p>
+      </div>
+
+      <div class="p-6 px-8 space-y-6 pb-20">
+        
+        <button onclick="router.goTo('translationInputPage')" class="premium-btn">
+          <div class="btn-icon-wrapper">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5h12M9 3v2m1.048 9.516a10.477 10.477 0 002.386-4.672m-1.24-.601a11.455 11.455 0 01-2.836 4.748m1.24.601A11.455 11.455 0 0014.138 9h2.262m-7.227 5.148c-.684.735-1.511 1.367-2.46 1.867M12 21l3.9-3.18a.185.185 0 01.25.01l1.59 1.59a.185.185 0 00.25.01L22 15"></path>
+            </svg>
+          </div>
+          <div class="btn-content">
+            <span class="btn-title">AI 萬國翻譯</span>
+            <span class="btn-subtitle">文字、對話、圖片即時解碼</span>
+          </div>
+          <span class="btn-arrow">→</span>
+        </button>
+
+        <button onclick="router.goTo('itineraryPage')" class="premium-btn">
+          <div class="btn-icon-wrapper">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-1.447-.894L15 7m0 10V7m0 0l-6-3"></path>
+            </svg>
+          </div>
+          <div class="btn-content">
+            <span class="btn-title">智能行程規劃</span>
+            <span class="btn-subtitle">量身打造深度遊歷路線</span>
+          </div>
+          <span class="btn-arrow">→</span>
+        </button>
+
+        <button onclick="router.goTo('navigationPage')" class="premium-btn">
+          <div class="btn-icon-wrapper">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+          </div>
+          <div class="btn-content">
+            <span class="btn-title">精準 AR 導航</span>
+            <span class="btn-subtitle">不再迷路，探索未知角落</span>
+          </div>
+          <span class="btn-arrow">→</span>
+        </button>
+
+        <button onclick="router.goTo('currencyPage')" class="premium-btn">
+          <div class="btn-icon-wrapper">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M12 16V15m0 1v-8m0 0V7"></path>
+            </svg>
+          </div>
+          <div class="btn-content">
+            <span class="btn-title">即時匯率換算</span>
+            <span class="btn-subtitle">智慧購物，錢包更有感</span>
+          </div>
+          <span class="btn-arrow">→</span>
+        </button>
+
+      </div>
+    </div>
+  </div>
+<!-- ==================== AI 萬國翻譯 ==================== -->
+  <div id="translationInputPage" class="page hidden">
+    <div class="max-w-md mx-auto bg-gray-50 min-h-screen shadow-2xl flex flex-col relative">
+      
+      <div class="bg-navy-900 text-white p-6 pt-12 flex items-center rounded-b-[30px] shadow-lg relative z-20">
+        <button onclick="router.goBack()" class="mr-4 p-2 hover:bg-white/10 rounded-full transition">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+        </button>
+        <h1 id="ui-title" class="text-xl font-medium tracking-wide">AI 翻譯助手</h1>
+      </div>
+
+      <div class="p-6 space-y-5 flex-grow overflow-y-auto pb-10">
+        
+        <div class="flex items-center justify-between bg-white p-2 rounded-2xl shadow-sm border border-gray-100 relative z-50">
+          
+          <div id="sourceDropdown" class="custom-dropdown relative w-[42%]" onclick="toggleDropdown('sourceDropdown')">
+            <div class="px-2 py-3 rounded-xl font-semibold text-navy-900 cursor-pointer hover:bg-gray-50 transition-colors flex justify-center items-center gap-1">
+              <span id="sourceSelected" class="truncate text-base">🌐 自動偵測</span>
+              <svg class="w-4 h-4 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </div>
+    
+            <ul class="dropdown-options" style="width: 220px; left: 0;">
+              <li class="dropdown-option" onclick="selectOption('sourceDropdown', '🌐 自動偵測')">🌐 自動偵測</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇹🇼 中文')">🇹🇼 中文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇺🇸 英文')">🇺🇸 英文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇯🇵 日文')">🇯🇵 日文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇰🇷 韓文')">🇰🇷 韓文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇹🇭 泰文')">🇹🇭 泰文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇻🇳 越南文')">🇻🇳 越南文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇵🇭 菲律賓文')">🇵🇭 菲律賓文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇲🇾 馬來文')">🇲🇾 馬來文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇮🇩 印尼文')">🇮🇩 印尼文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇫🇷 法文')">🇫🇷 法文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇩🇪 德文')">🇩🇪 德文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇪🇸 西班牙文')">🇪🇸 西班牙文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇮🇹 義大利文')">🇮🇹 義大利文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇳🇱 荷蘭文')">🇳🇱 荷蘭文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇨🇿 捷克文')">🇨🇿 捷克文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇨🇭 瑞士德文')">🇨🇭 瑞士德文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇬🇷 希臘文')">🇬🇷 希臘文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇮🇸 冰島文')">🇮🇸 冰島文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇵🇹 葡萄牙文')">🇵🇹 葡萄牙文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇹🇷 土耳其文')">🇹🇷 土耳其文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇦🇪 阿拉伯文')">🇦🇪 阿拉伯文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇷🇺 俄文')">🇷🇺 俄文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇸🇪 瑞典文')">🇸🇪 瑞典文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇩🇰 丹麥文')">🇩🇰 丹麥文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇫🇮 芬蘭文')">🇫🇮 芬蘭文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇳🇴 挪威文')">🇳🇴 挪威文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇵🇱 波蘭文')">🇵🇱 波蘭文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇭🇺 匈牙利文')">🇭🇺 匈牙利文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇰🇭 高棉文')">🇰🇭 高棉文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇮🇳 印地文')">🇮🇳 印地文</li>
+            </ul>
+          </div>
+
+          <button onclick="swapLanguages()" class="p-3 bg-gray-50 rounded-full hover:bg-gold-400 hover:text-white text-gray-400 transition-all active:scale-90 shadow-sm flex-shrink-0 z-10">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+          </button>
+
+          <div id="targetDropdown" class="custom-dropdown relative w-[42%]" onclick="toggleDropdown('targetDropdown')">
+            <div class="px-2 py-3 rounded-xl font-semibold text-gold-500 cursor-pointer hover:bg-gray-50 transition-colors flex justify-center items-center gap-1">
+              <span id="targetSelected" class="truncate text-base">🇯🇵 日文</span>
+              <svg class="w-4 h-4 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </div>
+    
+            <ul class="dropdown-options" style="width: 220px; right: 0; left: auto;">
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇹🇼 中文')">🇹🇼 中文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇺🇸 英文')">🇺🇸 英文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇯🇵 日文')">🇯🇵 日文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇰🇷 韓文')">🇰🇷 韓文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇹🇭 泰文')">🇹🇭 泰文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇻🇳 越南文')">🇻🇳 越南文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇵🇭 菲律賓文')">🇵🇭 菲律賓文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇲🇾 馬來文')">🇲🇾 馬來文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇮🇩 印尼文')">🇮🇩 印尼文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇫🇷 法文')">🇫🇷 法文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇩🇪 德文')">🇩🇪 德文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇪🇸 西班牙文')">🇪🇸 西班牙文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇮🇹 義大利文')">🇮🇹 義大利文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇳🇱 荷蘭文')">🇳🇱 荷蘭文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇨🇿 捷克文')">🇨🇿 捷克文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇨🇭 瑞士德文')">🇨🇭 瑞士德文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇬🇷 希臘文')">🇬🇷 希臘文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇮🇸 冰島文')">🇮🇸 冰島文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇵🇹 葡萄牙文')">🇵🇹 葡萄牙文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇹🇷 土耳其文')">🇹🇷 土耳其文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇦🇪 阿拉伯文')">🇦🇪 阿拉伯文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇷🇺 俄文')">🇷🇺 俄文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇸🇪 瑞典文')">🇸🇪 瑞典文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇩🇰 丹麥文')">🇩🇰 丹麥文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇫🇮 芬蘭文')">🇫🇮 芬蘭文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇳🇴 挪威文')">🇳🇴 挪威文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇵🇱 波蘭文')">🇵🇱 波蘭文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇭🇺 匈牙利文')">🇭🇺 匈牙利文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇰🇭 高棉文')">🇰🇭 高棉文</li>
+              <li class="dropdown-option" onclick="selectOption('targetDropdown', '🇮🇳 印地文')">🇮🇳 印地文</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="relative z-10">
+          <label id="ui-input-label" class="block text-sm font-semibold text-gold-500 mb-2 tracking-wider">📥 請輸入訊息</label>
+          <textarea id="inputMsg" rows="4" class="w-full text-lg p-4 border border-gray-200 rounded-xl focus:outline-none focus:border-gold-400 shadow-sm" placeholder="輸入你想翻譯的內容..."></textarea>
+        </div>
+
+        <button onclick="translateMessage()" class="w-full bg-navy-900 text-white py-4 rounded-2xl text-md font-semibold shadow-premium hover:bg-black active:scale-95 transition-all flex items-center justify-center gap-2 relative z-10 group">
+          <svg class="w-5 h-5 text-gold-400 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+          <span id="ui-translate-btn">開始翻譯與解析</span>
+        </button>
+
+        <div id="result" class="hidden relative z-10"></div>
+        
+      </div>
+    </div>
+  </div>
+  <!-- ==================== 即時匯率換算 ==================== -->
+<div id="currencyPage" class="page hidden">
+  <div class="max-w-md mx-auto bg-white min-h-screen shadow-2xl flex flex-col">
+
+    <!-- Header -->
+    <div class="bg-navy-900 text-white p-6 pt-12 flex items-center rounded-b-[30px]">
+      <button onclick="router.goBack()" class="mr-4 p-2 hover:bg-white/10 rounded-full transition">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+        </svg>
+      </button>
+      <h1 class="text-xl font-medium">💱 即時匯率換算</h1>
+    </div>
+
+    <div class="flex-1 p-6 space-y-8">
+
+      <!-- 金額輸入 -->
+      <div>
+        <label class="block text-sm font-medium text-gray-500 mb-2 tracking-widest">金額</label>
+        <input id="amount" type="number" value="1000" 
+               class="w-full text-5xl font-light p-6 bg-white border border-gray-200 rounded-3xl focus:outline-none focus:border-gold-400 text-navy-900">
+      </div>
+
+      <!-- 幣別選擇區塊 -->
+      <div class="grid grid-cols-2 gap-6">
+        <!-- 從 -->
+        <div>
+          <label class="block text-sm font-medium text-gray-500 mb-2 tracking-widest">從</label>
+          <select id="fromCurrency" class="w-full p-5 bg-white border border-gray-200 rounded-3xl text-lg font-medium focus:outline-none focus:border-gold-400">
+            <option value="TWD">🇹🇼 TWD 新台幣</option>
+            <option value="USD" selected>🇺🇸 USD 美元</option>
+            <option value="JPY">🇯🇵 JPY 日元</option>
+            <option value="KRW">🇰🇷 KRW 韓元</option>
+            <option value="EUR">🇪🇺 EUR 歐元</option>
+            <option value="THB">🇹🇭 THB 泰銖</option>
+            <option value="VND">🇻🇳 VND 越南盾</option>
+          </select>
+        </div>
+
+        <!-- 換成 -->
+        <div>
+          <label class="block text-sm font-medium text-gray-500 mb-2 tracking-widest">換成</label>
+          <select id="toCurrency" class="w-full p-5 bg-white border border-gray-200 rounded-3xl text-lg font-medium focus:outline-none focus:border-gold-400">
+            <option value="TWD" selected>🇹🇼 TWD 新台幣</option>
+            <option value="USD">🇺🇸 USD 美元</option>
+            <option value="JPY">🇯🇵 JPY 日元</option>
+            <option value="KRW">🇰🇷 KRW 韓元</option>
+            <option value="EUR">🇪🇺 EUR 歐元</option>
+            <option value="THB">🇹🇭 THB 泰銖</option>
+            <option value="VND">🇻🇳 VND 越南盾</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- 立即換算按鈕 -->
+      <button onclick="convertCurrency()" 
+              class="w-full bg-navy-900 hover:bg-black text-white font-semibold py-5 rounded-3xl text-xl shadow-premium flex items-center justify-center gap-3 transition-all active:scale-95">
+        <span>立即換算</span>
+      </button>
+
+      <!-- 結果顯示區 -->
+      <div id="currencyResult" class="hidden bg-emerald-50 border border-emerald-200 rounded-3xl p-6 text-center">
+        <p class="text-emerald-700 text-sm font-medium tracking-widest mb-1">即時換算結果</p>
+        <div id="resultAmount" class="text-5xl font-light text-navy-900 my-3"></div>
+        <div id="resultRate" class="text-sm text-emerald-600"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- ==================== JS引入 ==================== -->
+  <script src="js/config.js"></script>
+  <script src="js/router.js"></script>
+  <script src="js/translation.js"></script>
+  <script src="js/currency.js"></script>
+</body>
+</html>
